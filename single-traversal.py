@@ -12,6 +12,7 @@ class Linkedlist:
             print(self.head.data)
             self.head = self.head.next
 
+
 list = Linkedlist()
 list.head = Node(1)
 second = Node(2)

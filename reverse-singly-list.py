@@ -15,17 +15,34 @@ class Linkedlist:
         self.head = new_node
 
     def iterative_reverse(self):
-        while(self.head):
-            new_node = self.head.next
-            print("new_node", new_node.data)
-            temp = self.head.next
-            print("temp 1", temp.data)
-            temp = self.head
-            print("temp 2", temp.data)
-            self.head = new_node
-            print("head data", self.head.data)
-            print("next new node", new_node.data)
-        print(temp)
+        prev = None
+        current = self.head
+        while(current is not None):
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        self.head = prev
+
+    def recursive_reverse(self, current, previous):
+        if current is None:
+            self.head = current
+            current.next = previous
+            return
+        next = current.next
+        current.next = previous
+        self.iterative_reverse(next, current)
+
+    def reverse(self):
+        if self.head is None:
+            return
+        self.reverseUtil(self.head, None)
+
+    def printList(self):
+        temp = self.head
+        while(temp):
+            print(temp.data)
+            temp = temp.next
 
 llist = Linkedlist()
 llist.push(8)
@@ -34,3 +51,4 @@ llist.push(5)
 llist.push(4)
 llist.push(2)
 llist.iterative_reverse()
+llist.printList()
